@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { IAuthSatte } from "../../../common/types/auth"
+import { AnyAaaaRecord } from "dns"
 
-const initialState: IAuthSatte = {
+const initialState: any = {
     user: {
     id: null,
     firstName: '',
