@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useStyles } from './style'
 import { Box, Drawer, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
-import { HomeOutlined, ChevronLeftOutlined, ChevronRightOutlined, AutoGraphOutlined, MenuBookOutlined, SettingsOutlined, LogoutOutlined } from '@mui/icons-material';
+import { ChevronLeftOutlined, ChevronRightOutlined, LogoutOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FlexBetween from '../Flex-Between/indext';
+import { navMenu } from '../../common/moks/navigate';
+import { tokens } from '../../theme';
+import Logo from '../../assets/images/slidebar/img1.svg'
 
 
 const SidebarComponent = (props: any) => {
@@ -18,6 +21,7 @@ const SidebarComponent = (props: any) => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const theme = useTheme()
+    const colors = tokens(theme.palette.mode)
 
     useEffect(() => {
         setActive(pathname.substring(1))
@@ -40,11 +44,16 @@ const SidebarComponent = (props: any) => {
                         }
                     }}
                 >
-                    <Box width='100%'>
+                    <Box className = {classes.navBlock}>
                         <Box>
                             <FlexBetween>
-                                <Box display='flex' alignItems='center' gap='10px'>
-                                    <Typography> Demo</Typography>
+                                <Box className = {classes.brand}>
+                                    <img src={Logo} alt="Logo image"/>
+                                    <Typography 
+                                    variant='h1'
+                                    className={classes.brandTitle}
+                                    
+                                    > Demo</Typography>
                                 </Box>
                                 {!isNonMobile && (
                                     <IconButton onClick={()=> setIsOpen(!isOpen)}>
@@ -53,6 +62,38 @@ const SidebarComponent = (props: any) => {
                                 )}
                             </FlexBetween>
                         </Box>
+                        <List className={classes.navList}   >
+                            {
+                                navMenu.map((element)=>{
+                                    return(
+                                        <ListItem key={element.id}>
+                                            <ListItemButton onClick={() => navigate(`${element.path}`)} className={classes.navItem}>
+                                                <ListItemIcon>
+                                                    {element.icon}
+                                                </ListItemIcon>
+                                                <ListItemText>
+                                               <Typography variant = {'body1'}>{element.name}</Typography>  
+                                               </ListItemText>                             
+                                            </ListItemButton>
+                                        </ListItem>     
+                                         )                              
+                                })
+                            }
+                        </List>
+                    </Box>
+                    <Box width='100%'>
+                        <List>
+                            <ListItem>
+                                <ListItemButton className={classes.navItem}>
+                                    <ListItemIcon>
+                                        <LogoutOutlined />
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <Typography>Logout</Typography>
+                                    </ListItemText>
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
                     </Box>
                 </Drawer>
             )}
