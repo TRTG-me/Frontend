@@ -17,12 +17,13 @@ const SidebarComponent = (props: any) => {
         isOpen,
         setIsOpen
     } = props
+    
     const classes = useStyles()
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
-
+    
     useEffect(() => {
         setActive(pathname.substring(1))
     }, [pathname])
