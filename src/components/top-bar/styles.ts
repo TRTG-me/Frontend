@@ -1,24 +1,25 @@
-import {makeStyles} from "@mui/styles";
-import {Theme} from "@mui/material";
-import {tokens} from "../../theme";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
+import { tokens } from "../../theme";
 
 export const useStyles = makeStyles((theme: Theme) => {
     const colors = tokens(theme.palette.mode)
 
-    return(
+    return (
         {
             root: {
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '32px 74px',
-                backgroundColor: colors.primary.DEFAULT,
-                maxHeight: '95px',
-                borderBottom: `1px solid ${colors.borderColor}`
+                position: 'static',
+                background: `${colors.primary.DEFAULT} !important`,
+                borderBottom: `1px solid ${colors.borderColor}`,
+                boxShadow: 'none !important'
+            },
+            menuIcon: {
+                marginRight: '10px',
+                cursor: 'pointer'
             },
             iconBlock: {
                 paddingRight: '35px',
-                paddingTop: '15px',
+                paddingTop: '10px',
                 borderRight: `1px solid ${colors.borderColor}`
             },
             themeIcon: {
@@ -26,6 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => {
             },
             searchBlock: {
                 display: 'flex',
+                maxHeight: '45px',
                 borderRadius: '8px',
                 marginLeft: '28px',
                 backgroundColor: `${colors.primary[600]}`
@@ -37,6 +39,10 @@ export const useStyles = makeStyles((theme: Theme) => {
             },
             searchInput: {
                 padding: '18px 12px'
+            },
+            toolBar: {
+                justifyContent: 'space-between',
+                padding: '25px 45px'
             }
         }
     )
