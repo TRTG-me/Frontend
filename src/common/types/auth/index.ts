@@ -1,40 +1,53 @@
-export interface IPropsLogin {
-    setPassword: (value: string) => void
-    setEmail: (value: string) => void
-    navigate: (to: string) => void
-}
+import {FieldErrors, FieldValues, UseFormRegister} from "react-hook-form";
 
-export interface IPropsRegister {
-    setEmail: (value: string) => void
-    setPassword: (value: string) => void
-    setRepeatPassword: (value: string) => void
-    setFirstName: (value: string) => void
-    setUsername: (value: string) => void
-    navigate: (to: string) => void
+interface LoginFormValues {
+    password: string;
+    email: string;
     
 }
 
-export interface IAuthSatte {
+interface RegisterFormValues {
+    name: string;
+    username: string;
+    email: string; 
+    password: string;
+    confirmPassword: string; 
+}
+
+
+export interface IPropsLogin {
+    navigate: (to: string) => void;
+    register: UseFormRegister<LoginFormValues>;
+    errors: FieldErrors<LoginFormValues>;
+}
+
+export interface IPropsRegister
+ {
+    navigate: (to: string) => void
+    register: UseFormRegister<any>
+    errors: FieldErrors<RegisterFormValues>
+}
+
+export interface IAuthState {
     user: IPublicUser,
     isLogged: boolean
-
 }
 
-interface IPublicUser{
-    id: number| null,
+interface IPublicUser {
+    id: number | null,
     firstName: string,
     username: string,
-    email:string,
+    email: string,
     createdAt: string,
-    udatedAt: string,
-    watchlist:[IWatchList]
+    updatedAt: string
+    watchlist:[IWatchlist]
 }
 
-interface IWatchList{
+interface IWatchlist {
     id: number | null,
     name: string,
     assetId: string,
     createdAt: string,
-    updateAt: string,
+    updatedAt: string,
     user: number | null
 }

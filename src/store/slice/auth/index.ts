@@ -1,23 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { IAuthSatte } from "../../../common/types/auth"
 
+import {createSlice} from "@reduxjs/toolkit";
+import {IAuthState} from "../../../common/types/auth";
 
-const initialState: IAuthSatte = {
+const initialState: IAuthState = {
     user: {
-    id: null,
-    firstName: '',
-    username: '',
-    email:'',
-    createdAt: '',
-    udatedAt: '',
-    watchlist:[{
         id: null,
-        name: '',
-        assetId: '',
+        firstName: '',
+        username: '',
+        email: '',
         createdAt: '',
-        updateAt: '',
-        user: null
-        }]
+        updatedAt: '',
+        watchlist:[
+            {
+                id: null,
+                name: '',
+                assetId: '',
+                createdAt: '',
+                updatedAt: '',
+                user: null
+            }
+        ]
     },
     isLogged: false
 }
@@ -25,11 +27,10 @@ const initialState: IAuthSatte = {
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers:{
-        login(state, action){
+    reducers: {
+        login(state, action) {
             state.user = action.payload
             state.isLogged = true
-       
         }
     }
 })
