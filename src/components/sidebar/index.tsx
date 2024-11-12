@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useStyles } from './style'
-import { Box, Drawer, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
-import { ChevronLeftOutlined, ChevronRightOutlined, LogoutOutlined } from '@mui/icons-material';
+import { Box, Drawer,IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
+import { ChevronLeftOutlined, LogoutOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FlexBetween from '../Flex-Between/indext';
 import { navMenu } from '../../common/moks/navigate';
 import { tokens } from '../../theme';
 import Logo from '../../assets/images/slidebar/img1.svg'
+import { IsidebarProps } from '../../common/types/sidebar';
 
 
-const SidebarComponent = (props: any) => {
+const SidebarComponent: React.FC<IsidebarProps> = (props: IsidebarProps): JSX.Element => {
     const [active, setActive] = useState('')
     const {
         isNonMobile,
@@ -25,7 +26,7 @@ const SidebarComponent = (props: any) => {
     const colors = tokens(theme.palette.mode)
     
     useEffect(() => {
-        setActive(pathname.substring(1))
+        setActive(pathname)
     }, [pathname])
     return (
         <Box component='nav'>
@@ -68,7 +69,7 @@ const SidebarComponent = (props: any) => {
                                 navMenu.map((element)=>{
                                     return(
                                         <ListItem key={element.id}>
-                                            <ListItemButton onClick={() => navigate(`${element.path}`)} className={classes.navItem}>
+                                            <ListItemButton onClick={() => navigate(`${element.path}`)} className={active === element.path ? `${classes.navItem} ${classes.active}`: classes.navItem}>
                                                 <ListItemIcon>
                                                     {element.icon}
                                                 </ListItemIcon>

@@ -1,10 +1,13 @@
 import React from 'react'
-import { TextField, Button, Typography} from '@mui/material'
+import { TextField, Button, Typography, Box} from '@mui/material'
 import { IPropsRegister } from '../../../common/types/auth'
+import AppButton from '../../app-button'
+import { useStyles } from './styles'
 
 
 const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Element => {
     const{setEmail, setPassword, setRepeatPassword, setFirstName, setUsername, navigate} = props
+    const classes = useStyles()
 
     return (
 
@@ -16,8 +19,10 @@ const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Elem
             <TextField fullWidth={true} margin='normal' label="Email" variant="outlined" placeholder='Введите ваш email' onChange={(e)=> setEmail(e.target.value)}/>
             <TextField type='password' fullWidth={true} margin='normal' label="Password" variant="outlined" placeholder='Введите ваш пароль' onChange={(e)=> setPassword(e.target.value)}/>
             <TextField type='password' fullWidth={true} margin='normal' label="Repeat password" variant="outlined" placeholder='Повторите ваш пароль' onChange={(e)=> setRepeatPassword(e.target.value)}/>
-            <Button type="submit" sx={{ fontFamily: 'Popins', marginTop: 2, marginBottom: 2, width: '60%', marginLeft: 'auto', marginRight: 'auto' }} variant="contained">Регистрация</Button>
-            <Typography variant="body1" textAlign='center' sx={{ fontFamily: 'Popins' }}>У вас есть аккаунт?<span className='incitingText' onClick={() => navigate('/login')}>Login</span></Typography>
+            <AppButton type="submit" sx={{ fontFamily: 'Popins', marginTop: 2, marginBottom: 2, width: '60%', marginLeft: 'auto', marginRight: 'auto' }} variant="contained">Регистрация</AppButton>
+            <Box margin='20px 0'>
+            <Typography variant="body1" textAlign='center' sx={{ fontFamily: 'Popins' }}>У вас есть аккаунт?<span className={classes.incitingText} onClick={() => navigate('/login')}>Login</span></Typography>
+            </Box>
         </>
 
     )
