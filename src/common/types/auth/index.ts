@@ -7,6 +7,7 @@ TContext = any,
     navigate: (to: string) => void
     register: UseFormRegister<TFieldValues>;
     errors: FieldErrors<TFieldValues>;
+    loading: boolean;
 
 }
 
@@ -17,12 +18,14 @@ export interface IPropsRegister {
     setFirstName: (value: string) => void
     setUsername: (value: string) => void
     navigate: (to: string) => void
+    loading: boolean;
     
 }
 
 export interface IAuthSatte {
     user: IPublicUser,
-    isLogged: boolean
+    isLogged: boolean,
+    isLoading: boolean
 
 }
 
@@ -43,4 +46,16 @@ interface IWatchList{
     createdAt: string,
     updateAt: string,
     user: number | null
+}
+
+export interface IloginData {
+    email:string
+    password: string
+}
+
+export interface IRegisterData {
+    email: string
+    password: string
+    firstName: string
+    username: string
 }

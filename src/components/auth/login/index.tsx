@@ -1,11 +1,11 @@
 import React from 'react'
 import { TextField, Typography} from '@mui/material'
 import { IPropsLogin } from '../../../common/types/auth';
-import AppButton from '../../app-button';
 import { useStyles } from './styles';
+import AppLoadingButton from '../../loading-button';
 
 const LoginPage: React.FC<IPropsLogin>= (props:IPropsLogin): JSX.Element => {
-    const {navigate, register, errors}=props;
+    const {navigate, register, errors, loading}=props;
     const classes = useStyles()
     return (
         <>
@@ -42,7 +42,7 @@ const LoginPage: React.FC<IPropsLogin>= (props:IPropsLogin): JSX.Element => {
             })}
             />
 
-            <AppButton type="submit" sx={{marginTop: 2, marginBottom: 2, width: '60%', marginLeft: 'auto', marginRight: 'auto'}} variant="contained">Войти</AppButton>
+            <AppLoadingButton loading = {loading} type="submit" sx={{marginTop: 2, marginBottom: 2, width: '60%', marginLeft: 'auto', marginRight: 'auto'}} variant="contained">Войти</AppLoadingButton>
             <Typography variant="body1" textAlign='center'>У вас нет аккаунта?<span className={classes.incitingText} onClick={()=>navigate('/register')}>Регистрация</span></Typography>
         </>
     )
