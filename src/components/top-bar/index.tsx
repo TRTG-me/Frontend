@@ -20,7 +20,7 @@ const TopBarComponent: FC<ITopBarProps> = (props:ITopBarProps): JSX.Element => {
         <FlexBetween>
           <MenuOutlined className = {classes.menuIcon} onClick = {() => setIsOpen(!isOpen)}/>
           <Typography variant= 'h3'>
-          Welcome Alex
+          Welcome {sessionStorage.getItem('name')}
           </Typography></FlexBetween>
         <Box display='flex'>
           <Grid2 onClick={colorMode.toggleColorMode} className={classes.iconBlock}>
